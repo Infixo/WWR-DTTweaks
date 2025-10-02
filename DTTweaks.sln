@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36511.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTTweaks", "DTTweaks.csproj", "{C46E15CB-265A-479A-BE75-30AE8B37DE2C}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WWR-Utilities", "..\WWR-Utilities\WWR-Utilities.shproj", "{C795BFEA-4839-44DD-A100-DB17E03C49AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C46E15CB-265A-479A-BE75-30AE8B37DE2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C46E15CB-265A-479A-BE75-30AE8B37DE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C46E15CB-265A-479A-BE75-30AE8B37DE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C46E15CB-265A-479A-BE75-30AE8B37DE2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1986F213-EA26-497D-86D8-0AA77A3C4B73}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\WWR-Utilities\WWR-Utilities.projitems*{c46e15cb-265a-479a-be75-30ae8b37de2c}*SharedItemsImports = 5
+		..\WWR-Utilities\WWR-Utilities.projitems*{c795bfea-4839-44dd-a100-db17e03c49aa}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal
