@@ -3,6 +3,8 @@
 using HarmonyLib;
 using STM.Data;
 using STM.Data.Entities;
+using STM.GameWorld;
+using STM.GameWorld.Users;
 using System.Runtime.InteropServices;
 using Utilities;
 
@@ -118,6 +120,34 @@ public static class ModEntry
         Log.Write("--- PLANES ---");
         foreach (PlaneEntity vbe in MainData.Planes)
             Log.Write($"{vbe.ID} {vbe.Translated_name} t{vbe.Tier} s{vbe.Speed} c{vbe.Capacity} m{vbe.GetPrivateProperty<int>("Min_passengers")} r{vbe.Range} p{vbe.Price} e{vbe.Passenger_pay_per_km} {vbe.Name}");
+    }
+}
+
+
+[HarmonyPatch]
+public static class Patches
+{
+    [HarmonyPatch(typeof(CityUser), "LevelUp"), HarmonyPrefix]
+    public static bool CityUser_LevelUp_Prefix(CityUser __instance, GameScene scene, bool threaded)
+    {
+        int max = 10; // default max level for "raw" cities
+        if (__instance.Important) max += 3;
+        if (__instance.City.Capital) max += 3; // capital is always Important
+        if (__instance.City.Resort) max -= 5; // should be small
+        if (__instance.Sea != null) max += 2;
+        // each building level adds 1 city level
+        // TODO: there can be more hubs from other players - this also should influence size
+        ushort player = scene.Session.Player;
+        Hub hub = __instance.GetHub(player);
+        if (hub != null)
+        {
+            int buildings = 0;
+            foreach (CityBuilding bldg in hub.Buildings.Where(b => b != null))
+                buildings += bldg.Level;
+            max += 1 * buildings;
+        }
+        Log.Write($"{__instance.City.GetCountry(scene).ISO3166_1} {__instance.Name} {__instance.Level} / {max}   h={__instance.City.Height}  p={__instance.City.Real_population} r={__instance.City.Resort}");
+        return __instance.Level < max;
     }
 }
 
