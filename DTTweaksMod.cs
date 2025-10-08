@@ -22,8 +22,6 @@ public static class ModEntry
     //public static ILog log = LogManager.GetLogger($"{nameof(InfoLoom)}").SetShowsErrorsInUI(false);
 
     [UnmanagedCallersOnly]
-    //[UnmanagedCallersOnly(EntryPoint = "InitializeMod")] // not needed when called via CLR
-    //[ModuleInitializer] // only works with CLR, not native loads?
     public static int InitializeMod()
     {
         DebugConsole.Show();
@@ -51,6 +49,7 @@ public static class ModEntry
 
         // do other stuff here to initialize
         ChangeMainData();
+        Log.DumpMainDataDefaults();
         ChangeVehicles();
 
         return 0;
@@ -60,6 +59,10 @@ public static class ModEntry
     internal static void ChangeMainData()
     {
         MainData.Defaults.SetPublicProperty("Passenger_max_search_connections", 4); // 6
+
+        // Roads & Rails cost
+        MainData.Defaults.SetPublicProperty("Road_price", 200000); // 150k => 200k
+        MainData.Defaults.SetPublicProperty("Rails_price", 600000);  // 250k => 600k
 
         // Station times
         MainData.Defaults.SetPublicProperty("Bus_station_time", 300); // 900
@@ -101,6 +104,12 @@ public static class ModEntry
         MainData.Trains.Where(x => x.Name == "vehicle_class_87").First().SetPublicProperty("Capacity", 420/6); // 5 Class 87 360 => 430 // lower capacity than previous!
         MainData.Trains.Where(x => x.Name == "vehicle_apex_3").First().SetPublicProperty("Capacity", 450/6); // 6 Apex 3 390 => 450 // only Tier6 with less cap than Tier5
         MainData.Trains.Where(x => x.Name == "vehicle_gsw_5").First().SetPublicProperty("Capacity", 320/5); // 4 GSW - 5 275 => 320 // less cap than prev 
+
+        // Planes
+        MainData.Planes.Where(x => x.Name == "vehicle_a950l").First().SetPublicProperty("Capacity", 150); // 5 120 => 150 // lower capacity than previous!
+        MainData.Planes.Where(x => x.Name == "vehicle_822_135").First().SetPublicProperty("Capacity", 135); // 5 134 => 135 stick with the name
+        MainData.Planes.Where(x => x.Name == "vehicle_822_270").First().SetPublicProperty("Capacity", 270); // 5 134 => 270 stick with the name
+        MainData.Planes.Where(x => x.Name == "vehicle_900_350").First().SetPublicProperty("Capacity", 350); // 5 351 => 350 stick with the name
 
         // Dump companies
         Log.Write("--- VEHICLE COMPANIES ---");
@@ -146,7 +155,7 @@ public static class Patches
                 buildings += bldg.Level;
             max += 1 * buildings;
         }
-        Log.Write($"{__instance.City.GetCountry(scene).ISO3166_1} {__instance.Name} {__instance.Level} / {max}   h={__instance.City.Height}  p={__instance.City.Real_population} r={__instance.City.Resort}");
+        //Log.Write($"{__instance.City.GetCountry(scene).ISO3166_1} {__instance.Name} {__instance.Level} / {max}   h={__instance.City.Height:F2}  p={__instance.City.Real_population} r={__instance.City.Resort}");
         return __instance.Level < max;
     }
 }
