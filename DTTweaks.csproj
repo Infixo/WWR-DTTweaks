@@ -35,9 +35,15 @@
     </Reference>
   </ItemGroup>
   
+  <ItemGroup>
+    <None Update="DTTweaks.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
   
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(GameDir)\Mods\$(ProjectName).dll&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)$(ProjectName).pdb&quot; &quot;$(GameDir)\Mods\$(ProjectName).pdb&quot;" />
+    <Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(GameDir)\Mods\$(ProjectName).dll&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)$(ProjectName).pdb&quot; &quot;$(GameDir)\Mods\$(ProjectName).pdb&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)$(ProjectName).xml&quot; &quot;$(GameDir)\Mods\$(ProjectName).xml&quot;" />
   </Target>
   
   

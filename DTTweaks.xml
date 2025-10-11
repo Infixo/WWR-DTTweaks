@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+
+  <Options>
+    <Param name="RawCityLevelLimit" type="int">10</Param>
+  </Options>
+  
+  <Defaults>
+    <!-- Number of hops -->
+    <Param name="Passenger_max_search_connections" type="int">4</Param> <!-- 6 -->
+    <!-- Roads & Rails cost -->
+    <Param name="Road_price" type="long">200000</Param> <!-- 150k -->
+    <Param name="Rails_price" type="long">600000</Param> <!-- 250k -->
+    <!-- Station times -->
+    <Param name="Bus_station_time" type="int">300</Param> <!-- 900 -->
+    <Param name="Train_station_time" type="int">600</Param> <!-- 300 -->
+    <!-- City -->
+    <Param name="City_shrink_threshold" type="decimal">0.5</Param> <!-- 0.3 -->
+  </Defaults>
+  
+  <Vehicles>
+    
+    <!-- SHIPS -->
+    <Vehicle name="vehicle_silver_tide" type="ship">
+      <Param name="Capacity" type="int">700</Param> <!-- 5 Silver Tide 860 => 700 -->
+    </Vehicle>
+    <Vehicle name="vehicle_royal_wanderer" type="ship">
+      <Param name="Capacity" type="int">1460</Param> <!-- 6 Royal Wanderer  1360 => 1460 -->
+    </Vehicle>
+    <Vehicle name="vehicle_sea_conqueror" type="ship">
+      <Param name="Capacity" type="int">2800</Param> <!-- 6 Sea Conqueror 7600 => 2800 // absurd number -->
+    </Vehicle>
+    <Vehicle name="vehicle_wind_rider" type="ship">
+      <Param name="Capacity" type="int">190</Param> <!-- 3 Wind Rider 250 => 190 // too many, makes next one worse -->
+    </Vehicle>
+
+    <!-- TRAINS -->
+    <Vehicle name="vehicle_class_87" type="train">
+      <Param name="Capacity" type="int">70</Param> <!-- 5 Class 87 360 => 420/6 wagons // lower capacity than previous! -->
+    </Vehicle>
+    <Vehicle name="vehicle_apex_3" type="train">
+      <Param name="Capacity" type="int">75</Param> <!-- 6 Apex 3 390 => 450/6 wagons // only Tier6 with less cap than Tier5 -->
+    </Vehicle>
+    <Vehicle name="vehicle_gsw_5" type="train">
+      <Param name="Capacity" type="int">64</Param> <!-- 4 GSW - 5 275 => 320/5 wagons // less cap than prev -->
+    </Vehicle>
+
+    <!-- PLANES -->
+    <Vehicle name="vehicle_a950l" type="plane">
+      <Param name="Capacity" type="int">150</Param> <!-- 5 120 => 150 // lower capacity than previous! -->
+    </Vehicle>
+    <Vehicle name="vehicle_822_135" type="plane">
+      <Param name="Capacity" type="int">135</Param> <!-- 5 134 => 135 stick with the name -->
+    </Vehicle>
+    <Vehicle name="vehicle_822_270" type="plane">
+      <Param name="Capacity" type="int">270</Param> <!-- 5 134 => 270 stick with the name -->
+    </Vehicle>
+    <Vehicle name="vehicle_900_350" type="plane">
+      <Param name="Capacity" type="int">350</Param> <!-- 5 351 => 350 stick with the name -->
+    </Vehicle>
+    
+  </Vehicles>
+
+</Configuration>
