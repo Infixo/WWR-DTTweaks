@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Configuration>
 
+  <!-- 
+  Please note that only 'int' type allows for negative values (there are few params that are negative).
+  All others (byte, long, decimal) cannot use minus sign.
+  Decimal separator is (.) dot. There aro no thousdands separators, etc. allowed.
+  -->
+  
   <Options>
-    <Param name="RawCityLevelLimit" type="int">10</Param>
+    <Param name="RawCityLevelLimit" type="int">0</Param> <!-- Set to 0 or remove the param to disable the limiter -->
   </Options>
   
   <Defaults>
     <!-- Number of hops -->
     <Param name="Passenger_max_search_connections" type="int">4</Param> <!-- 6 -->
     <!-- Roads & Rails cost -->
-    <Param name="Road_price" type="long">200000</Param> <!-- 150k -->
-    <Param name="Rails_price" type="long">600000</Param> <!-- 250k -->
+    <Param name="Road_price" type="long">125000</Param> <!-- 150k -->
+    <Param name="Rails_price" type="long">500000</Param> <!-- 250k -->
     <!-- Station times -->
     <Param name="Bus_station_time" type="int">300</Param> <!-- 900 -->
     <Param name="Train_station_time" type="int">600</Param> <!-- 300 -->
     <!-- City -->
-    <Param name="City_shrink_threshold" type="decimal">0.5</Param> <!-- 0.3 -->
+    <Param name="City_shrink_threshold" type="decimal">0.4</Param> <!-- 0.3 -->
   </Defaults>
   
   <Vehicles>

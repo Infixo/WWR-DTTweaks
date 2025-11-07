@@ -5,7 +5,7 @@
 - The configuration is read from DTTweaks.xml file. Please see the contents of this file for details of changed values.
 
 ### City level limiter
-- Parameter Options.RawCityLevelLimit allows to set limit to city growth.
+- Parameter Options.RawCityLevelLimit allows to set limit to city growth. Set to 0 (or remove) to disable the feature.
 
 ### Game parameters
 - Tweaking some key game parameters like number of hops, station times, city growth thresholds, road and rail prices, etc.
@@ -31,6 +31,9 @@
 - None atm.
 
 ### Changelog
+- v0.1.1 (2025-10-11)
+  - Fixes few params of int type not accepting negative values.
+  - Changed value to disable the city growth limiter to <= 0.
 - v0.1.0 (2025-10-11)
   - Initial release.
 

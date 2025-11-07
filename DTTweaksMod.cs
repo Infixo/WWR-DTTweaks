@@ -5,12 +5,9 @@ using STM.Data;
 using STM.Data.Entities;
 using STM.GameWorld;
 using STM.GameWorld.Users;
-using System;
-using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Utilities;
-using DTTweaks.Config;
 
 namespace DTTweaks;
 
@@ -19,8 +16,6 @@ public static class ModEntry
 {
     public static string ModName { get; private set; } = nameof(DTTweaks);
     public static string HarmonyId { get; private set; } = String.Empty;
-
-    //public static ConfigurationXml? Config { get; private set; }
 
 
     [UnmanagedCallersOnly]
@@ -37,11 +32,6 @@ public static class ModEntry
 
         // Read config data
         _ = ConfigToolXml.LoadConfig(ModName, assemblyDirectory!);
-        //if (Config == null)
-        //{
-            //Log.Write("Failed to load the config file. Aborting.");
-            //return 1;
-        //}
 
         try
         {
@@ -199,17 +189,19 @@ public static class ModEntry
 [HarmonyPatch]
 public static class Patches
 {
-    private static int _MaxLevel = 0; // 0 is undefined, -1 is disabled
+    private static int _MaxLevel = int.MaxValue; // 0 is disabled
 
     [HarmonyPatch(typeof(CityUser), "LevelUp"), HarmonyPrefix]
     public static bool CityUser_LevelUp_Prefix(CityUser __instance, GameScene scene, bool threaded)
     {
-        if (_MaxLevel == 0) // late init
+        if (_MaxLevel <= 0) return true; // continue with the original
+
+        if (_MaxLevel == int.MaxValue) // late init
         {
             ParamXml? paramMax = ConfigToolXml.Config?.Options?.TryGet("RawCityLevelLimit");
-            _MaxLevel = paramMax == null ? -1 : (paramMax.IsOK ? (int)paramMax.GetValue() : -1);
+            _MaxLevel = paramMax == null ? 0 : (paramMax.IsOK ? (int)paramMax.GetValue() : 0);
+            if (_MaxLevel <= 0) return true; // continue with the original
         }
-        if (_MaxLevel < 0) return true; // continue with the original
 
         // limit growth
         int max = _MaxLevel;

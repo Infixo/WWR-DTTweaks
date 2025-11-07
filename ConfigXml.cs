@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Globalization;
-using System.IO;
-using System.Reflection;
 using System.Xml.Serialization;
 using Utilities;
 
-#pragma warning disable IDE0130 // Namespace does not match folder structure
-namespace DTTweaks.Config;
-#pragma warning restore IDE0130 // Namespace does not match folder structure
+namespace DTTweaks;
 
 
 // From Gemini - for future
@@ -93,14 +87,15 @@ public class ParamXml
     // Converts the string Value to the C# type specified by Type
     public object GetValue()
     {
-        // NumberStyles.None enforces only digits (and optional leading sign).
+        // NumberStyles.None enforces only digits (no sign!!!).
+        // Leading sign must be explicitly allowed, however only few params use negative values (all ints).
         // InvariantCulture for consistent parsing (no thousands separators, dot for decimal).
         return Type switch
         {
             "byte" => byte.Parse(Value ?? "0", NumberStyles.None, CultureInfo.InvariantCulture),
-            "int" => int.Parse(Value ?? "0", NumberStyles.None, CultureInfo.InvariantCulture),
-            "long" => long.Parse(Value ?? "0", CultureInfo.InvariantCulture),
-            "decimal" => decimal.Parse(Value ?? "0", NumberStyles.None| NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture),// Use NumberStyles.Any for decimal to handle various formats if necessary
+            "int" => int.Parse(Value ?? "0", NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture),
+            "long" => long.Parse(Value ?? "0", NumberStyles.None, CultureInfo.InvariantCulture),
+            "decimal" => decimal.Parse(Value ?? "0", NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture),// Use NumberStyles.Any for decimal to handle various formats if necessary
             _ => Value ?? String.Empty, // Return the raw string or throw an exception for unknown types
         };
     }
