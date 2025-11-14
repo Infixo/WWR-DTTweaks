@@ -172,16 +172,16 @@ public static class ModEntry
         // Dump vehicles
         Log.Write("--- ROAD VEHICLES---");
         foreach (VehicleBaseEntity vbe in MainData.Road_vehicles)
-            Log.Write($"{vbe.ID} {vbe.Translated_name} t{vbe.Tier} s{vbe.Speed} c{vbe.Capacity} m{vbe.GetPrivateProperty<int>("Min_passengers")} p{vbe.Price} e{vbe.Passenger_pay_per_km} {vbe.Name}");
+            Log.Write($"{vbe.ID} {vbe.Translated_name} t{vbe.Tier} s{vbe.Speed} c{vbe.Capacity} m{vbe.GetPrivateProperty<int>("Min_passengers")} p{vbe.Price} i{vbe.Passenger_pay_per_km} e{-vbe.Cost_per_km} {vbe.Name}");
         Log.Write("--- TRAINS ---");
         foreach (TrainEntity vbe in MainData.Trains)
-            Log.Write($"{vbe.ID} {vbe.Translated_name} t{vbe.Tier} s{vbe.Speed} c{vbe.Max_capacity} m{vbe.GetPrivateProperty<int>("Min_passengers")} p{vbe.Price} e{vbe.Passenger_pay_per_km} {vbe.Name}");
+            Log.Write($"{vbe.ID} {vbe.Translated_name} t{vbe.Tier} s{vbe.Speed} c{vbe.Max_capacity} m{vbe.GetPrivateProperty<int>("Min_passengers")} p{vbe.Price} i{vbe.Passenger_pay_per_km} e{-vbe.Cost_per_km} {vbe.Name}");
         Log.Write("--- SHIPS ---");
         foreach (VehicleBaseEntity vbe in MainData.Ships)
-            Log.Write($"{vbe.ID} {vbe.Translated_name} t{vbe.Tier} s{vbe.Speed} c{vbe.Capacity} m{vbe.GetPrivateProperty<int>("Min_passengers")} p{vbe.Price} e{vbe.Passenger_pay_per_km} {vbe.Name}");
+            Log.Write($"{vbe.ID} {vbe.Translated_name} t{vbe.Tier} s{vbe.Speed} c{vbe.Capacity} m{vbe.GetPrivateProperty<int>("Min_passengers")} p{vbe.Price} i{vbe.Passenger_pay_per_km} e{-vbe.Cost_per_km} {vbe.Name}");
         Log.Write("--- PLANES ---");
         foreach (PlaneEntity vbe in MainData.Planes)
-            Log.Write($"{vbe.ID} {vbe.Translated_name} t{vbe.Tier} s{vbe.Speed} c{vbe.Capacity} m{vbe.GetPrivateProperty<int>("Min_passengers")} r{vbe.Range} p{vbe.Price} e{vbe.Passenger_pay_per_km} {vbe.Name}");
+            Log.Write($"{vbe.ID} {vbe.Translated_name} t{vbe.Tier} s{vbe.Speed} c{vbe.Capacity} m{vbe.GetPrivateProperty<int>("Min_passengers")} r{vbe.Range} p{vbe.Price} i{vbe.Passenger_pay_per_km} e{-vbe.Cost_per_km} {vbe.Name}");
     }
 }
 
