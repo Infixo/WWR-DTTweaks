@@ -31,6 +31,8 @@
 - None atm.
 
 ### Changelog
+- v0.1.2 (2025-11-25)
+  - Technical update
 - v0.1.1 (2025-10-11)
   - Fixes few params of int type not accepting negative values.
   - Changed value to disable the city growth limiter to <= 0.
