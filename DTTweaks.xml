@@ -16,13 +16,18 @@
     <Param name="Passenger_max_search_connections" type="int">4</Param> <!-- 6 -->
     <!-- Roads & Rails cost -->
     <Param name="Road_price" type="long">125000</Param> <!-- 150k -->
-    <Param name="Rails_price" type="long">500000</Param> <!-- 250k -->
+    <Param name="Rails_price" type="long">400000</Param> <!-- 250k -->
     <!-- Station times -->
     <Param name="Bus_station_time" type="int">300</Param> <!-- 900 -->
     <Param name="Train_station_time" type="int">600</Param> <!-- 300 -->
     <!-- City -->
     <Param name="City_shrink_threshold" type="decimal">0.4</Param> <!-- 0.3 -->
-  </Defaults>
+	<!-- Servicing costs -->
+    <Param name="Servicing_bus_station" type="int">-20000</Param> <!-- -50k -->
+    <!-- <Param name="Servicing_train_station" type="int">-25000</Param> -->
+    <Param name="Servicing_airport" type="int">-250000</Param> <!-- -200k -->
+    <!-- <Param name="Servicing_port" type="int">-200000</Param> -->
+    </Defaults>
   
   <Vehicles>
     
